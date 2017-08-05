@@ -11,28 +11,20 @@ import UIKit
 class OrderTableViewController: UITableViewController {
     
     let model = generateData()
-    let basket: [Topping] = []
     let pizzaName = "Normal pizza"
-    
+    var basket: [Topping] = []
     
     var pizzaCounter: UIStepper!
     var foodLabel: UILabel!
     var orderTableView: UITableView!
+    var toppingCollectionViews: [UICollectionView] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 44.0
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
 }
@@ -47,21 +39,45 @@ extension OrderTableViewController {
         updatePizzaLabelText()
     }
     
+    func toppingButtonPressed(_ sender: ToppingButton){
+        print(sender.topping.name)
+        basket.append(sender.topping)
+        orderTableView.reloadData()
+    }
+    
+}
+
+extension OrderTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let index = toppingCollectionViews.index(of: collectionView) else {return 0}
+        return model[index].count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let index = toppingCollectionViews.index(of: collectionView)!
+        let topping = model[index][indexPath.row]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "toppingCollectionViewCell", for: indexPath)
+        let toppingButton = cell.viewWithTag(1) as! ToppingButton
+        toppingButton.topping = topping
+        toppingButton.setImage( UIImage(named: topping.name) , for: .normal)
+        toppingButton.addTarget(self, action: #selector(toppingButtonPressed), for: .touchUpInside)
+        return cell
+    }
 }
 
 extension OrderTableViewController {
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        if orderTableView != nil && tableView == orderTableView {return 1}
+        if orderTableView != nil && tableView == orderTableView {
+            return 1
+        }
         return 2
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if orderTableView != nil &&  tableView == orderTableView {
-            return 9
+            return basket.count
         }
         if section == 0 {
             return 2
@@ -73,6 +89,8 @@ extension OrderTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if orderTableView != nil && tableView == orderTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
+            let label = cell.viewWithTag(1) as! UILabel
+            label.text = "1 x \(basket[indexPath.row].name)"
             return cell
         }
         if indexPath == [0,0] {
@@ -92,14 +110,22 @@ extension OrderTableViewController {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "selectionCell", for: indexPath)
+        let collectionView = cell.viewWithTag(1) as! UICollectionView
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        toppingCollectionViews.append(collectionView)
         return cell
     }
     
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if orderTableView != nil && tableView == orderTableView {
+            return 35
+        }
         if tableView == self.tableView && indexPath == [0,1] {
             return 200.0
         }
+        if indexPath.section == 1 {return 80}
         return 44
     }
     
