@@ -8,20 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		029845751F350D3600B4336E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029845741F350D3600B4336E /* AppDelegate.swift */; };
-		029845771F350D3600B4336E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029845761F350D3600B4336E /* ViewController.swift */; };
 		0298457A1F350D3600B4336E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 029845781F350D3600B4336E /* Main.storyboard */; };
 		0298457C1F350D3600B4336E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0298457B1F350D3600B4336E /* Assets.xcassets */; };
 		0298457F1F350D3600B4336E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0298457D1F350D3600B4336E /* LaunchScreen.storyboard */; };
+		029845871F350E3700B4336E /* OrderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029845861F350E3700B4336E /* OrderTableViewController.swift */; };
+		0298458B1F350FB800B4336E /* BadgeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029845881F350FB800B4336E /* BadgeButton.swift */; };
+		0298458C1F350FB800B4336E /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 029845891F350FB800B4336E /* MockData.swift */; };
+		0298458D1F350FB800B4336E /* Topping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0298458A1F350FB800B4336E /* Topping.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		029845711F350D3600B4336E /* pizzahub.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pizzahub.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		029845741F350D3600B4336E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		029845761F350D3600B4336E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		029845791F350D3600B4336E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0298457B1F350D3600B4336E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0298457E1F350D3600B4336E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		029845801F350D3600B4336E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		029845861F350E3700B4336E /* OrderTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderTableViewController.swift; sourceTree = "<group>"; };
+		029845881F350FB800B4336E /* BadgeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BadgeButton.swift; sourceTree = "<group>"; };
+		029845891F350FB800B4336E /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		0298458A1F350FB800B4336E /* Topping.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topping.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +60,12 @@
 		029845731F350D3600B4336E /* pizzahub */ = {
 			isa = PBXGroup;
 			children = (
+				029845881F350FB800B4336E /* BadgeButton.swift */,
+				029845891F350FB800B4336E /* MockData.swift */,
+				0298458A1F350FB800B4336E /* Topping.swift */,
 				029845741F350D3600B4336E /* AppDelegate.swift */,
-				029845761F350D3600B4336E /* ViewController.swift */,
 				029845781F350D3600B4336E /* Main.storyboard */,
+				029845861F350E3700B4336E /* OrderTableViewController.swift */,
 				0298457B1F350D3600B4336E /* Assets.xcassets */,
 				0298457D1F350D3600B4336E /* LaunchScreen.storyboard */,
 				029845801F350D3600B4336E /* Info.plist */,
@@ -137,7 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				029845771F350D3600B4336E /* ViewController.swift in Sources */,
+				0298458B1F350FB800B4336E /* BadgeButton.swift in Sources */,
+				0298458C1F350FB800B4336E /* MockData.swift in Sources */,
+				029845871F350E3700B4336E /* OrderTableViewController.swift in Sources */,
+				0298458D1F350FB800B4336E /* Topping.swift in Sources */,
 				029845751F350D3600B4336E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
