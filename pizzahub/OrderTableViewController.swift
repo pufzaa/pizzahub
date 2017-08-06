@@ -8,16 +8,27 @@
 
 import UIKit
 
+class OrderTableViewModel {
+    var numberOfType: Int
+    let topping: Topping
+    
+    init(numberOfType: Int, topping: Topping){
+        self.numberOfType = numberOfType
+        self.topping = topping
+    }
+}
+
 class OrderTableViewController: UITableViewController {
     
     let model = generateData()
     let pizzaName = "Normal pizza"
-    var basket: [Topping] = []
     
     var pizzaCounter: UIStepper!
     var foodLabel: UILabel!
     var orderTableView: UITableView!
     var toppingCollectionViews: [UICollectionView] = []
+    
+    var temp: [OrderTableViewModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +51,19 @@ extension OrderTableViewController {
     }
     
     func toppingButtonPressed(_ sender: ToppingButton){
-        print(sender.topping.name)
-        basket.append(sender.topping)
+        toppingGroupedAfterType(topping: sender.topping)
         orderTableView.reloadData()
     }
     
+    func toppingGroupedAfterType(topping: Topping){
+        let index = temp.index(where: {$0.topping == topping})
+        if index == nil {
+            temp.append(OrderTableViewModel(numberOfType: 1, topping: topping))
+        }
+        else{
+            temp[index!].numberOfType = temp[index!].numberOfType + 1
+        }
+    }
 }
 
 extension OrderTableViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -77,7 +96,7 @@ extension OrderTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if orderTableView != nil &&  tableView == orderTableView {
-            return basket.count
+            return temp.count
         }
         if section == 0 {
             return 2
@@ -90,7 +109,7 @@ extension OrderTableViewController {
         if orderTableView != nil && tableView == orderTableView {
             let cell = tableView.dequeueReusableCell(withIdentifier: "orderCell", for: indexPath)
             let label = cell.viewWithTag(1) as! UILabel
-            label.text = "1 x \(basket[indexPath.row].name)"
+            label.text = "\(temp[indexPath.row].numberOfType) x \(temp[indexPath.row].topping.name)"
             return cell
         }
         if indexPath == [0,0] {
