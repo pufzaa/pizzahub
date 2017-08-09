@@ -32,6 +32,7 @@ class OrderTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.title = pizzaName
     }
 
     override func didReceiveMemoryWarning() {
@@ -139,7 +140,7 @@ extension OrderTableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if orderTableView != nil && tableView == orderTableView {
-            return 35
+            return 40
         }
         if tableView == self.tableView && indexPath == [0,1] {
             return 200.0
