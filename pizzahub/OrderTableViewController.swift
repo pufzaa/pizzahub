@@ -144,7 +144,7 @@ extension OrderTableViewController {
         if tableView == self.tableView && indexPath == [0,1] {
             return 200.0
         }
-        if indexPath.section == 1 {return 80}
+        if indexPath.section == 1 {return 60}
         return 44
     }
     
